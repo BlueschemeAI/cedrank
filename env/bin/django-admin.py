@@ -1,4 +1,4 @@
-#!/home/user/cedrank/env/bin/python3
+#!/home/raisul/cedrank/env/bin/python3
 from django.core import management
 
 if __name__ == "__main__":
