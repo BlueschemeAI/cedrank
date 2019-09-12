@@ -1,0 +1,14 @@
+
+.hero {
+	min-height: 400px; 
+	position: relative;
+    background-color: $primary;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.hero-banner {
+    .btn-ask-question {
+        padding: .5rem 1rem;
+    }
+}

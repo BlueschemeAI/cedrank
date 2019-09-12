@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" 
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "assets/login/icofont.min.css" %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "assets/login/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/login/style.css" %}">
+    <title>CREDRANK</title>
+</head>
+
+<body>
+    <section class="block-py hero">
+        <div class="container">
+            
+            <div class="text-center mb-4">
+                <img src="{% static "assets/login/logo.png" %}" alt="Credrank">
+            </div>
+                        
+            <div class="log-card --login">
+                <h5 class="log-heading text-center">Signup with Credrank</h5>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <h6><font color="red">{{ message }}</font></h6>
+                        {% endfor %}
+                    {% endif %}
+            
+                    <div class="row">
+                            <div class="col-md-12">
+                                {% for field in user_form %}
+                                <div class="form-group">
+                                    <input type="text" name="{{ field.html_name }}" placeholder="{{ field.html_name }}" class="form-control form-control-lg form-control-custom">
+                                </div>
+                                {% endfor %}
+                                {% for field in profile_form %}
+                                <div class="form-group">
+                                    <input type="text" name="{{ field.html_name }}" placeholder="{{ field.html_name }}" class="form-control form-control-lg form-control-custom">
+                                </div>
+                                {% endfor %}
+                            </div>
+                    </div>
+                    
+                    
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-lg btn-custom btn-block">Signup</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="text-center pt-4">
+                Does your company use Credrank today? <a href="{% url 'login' %}">Log in</a> here.
+            </div>
+        </div>
+    </section>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static "assets/login/jquery-3.2.1.js" %}"></script>
+    <script src="{% static "assets/login/popper.js" %}"></script>
+    <script src="{% static "assets/login/bootstrap.js" %}"></script>
+    <script src="{% static "assets/login/jquery.mCustomScrollbar.concat.min.js" %}"></script>
+    <script src="{% static "assets/login/script.js" %}"></script>
+</body>
+
+</html>

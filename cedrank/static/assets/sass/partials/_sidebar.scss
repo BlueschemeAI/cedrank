@@ -1,0 +1,45 @@
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $sidebar-width;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: cover;
+
+    .sidebar-header, .sidebar-body {
+        padding: 25px 30px;
+    }
+    .sidebar-header {
+        height: 80px;
+        display: flex;
+        align-items: center;
+    }
+    .sidebar-body {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        height: calc(100% - 80px);
+    }
+}
+.sidebar-nav {
+    @include list-unstyled;
+    margin-bottom: 0;
+    width: 100%;
+
+    a {
+        color: $white;
+        display: block;
+        padding: .5rem .75rem;
+    }
+    i {
+        width: 24px;
+    }
+    .nav-item-text {
+        display: inline-block;
+    }
+    .active {
+        background-color: rgba($color: $white, $alpha: .2)
+    }
+}

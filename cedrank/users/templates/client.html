@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" 
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css" %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "assets/plugins/bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+    <title>CREDRANK</title>
+</head>
+
+<body>
+    <aside id="sidebar" style="background-image: url({% static "assets/images/sidebar.png" %})">
+        <div class="sidebar-header">
+            <a href="" class="sidebar-brand">
+                <img src="{% static "assets/images/logo.png" %}" alt="Debtors">
+            </a>
+        </div>
+        <div class="sidebar-body">
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="#" class="s-nav-item"><i class="fas fa-home"></i> <span class="nav-item-text">Home</span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'creditors' %}" class="s-nav-item"><i class="far fa-file-alt"></i> <span class="nav-item-text">Clients</span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'debtors' %}" class="s-nav-item active"><i class="far fa-user"></i> <span class="nav-item-text">Debtors</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-nav-item"><i class="fas fa-user-tie"></i> <span class="nav-item-text">Disputes</span></a>
+                    </li>
+                    <li>
+                        <a href="" class="s-nav-item"><i class="fas fa-tools"></i> <span class="nav-item-text">Payments</span></a>
+                    </li>
+                </ul>
+        </div>
+    </aside>
+        <main id="main-content">
+        <div class="main-content-header">
+           <div class="container-fluid">
+               <div class="main-content-header-block">
+                    <ul class="content-nav ml-auto">
+                        <li>
+                            <a href="">
+                                <i class="fas fa-bell"></i>
+                            </a>
+                        </li>
+                    </ul>
+               </div>
+           </div> 
+        </div>
+        <div class="main-content-body">
+            <div class="container-fluid container-fluid-fixed">
+                <div class="content-header">
+                    <div class="header-cell">
+                        <h1 class="c_header-title">Clients</h1>
+                        <span class="c_header-subtext">All the Clients are listed here</span>
+                    </div>
+                    <div class="header-cell header-actions">
+                        <a href="#" role="button" data-toggle="modal" data-target="#addNewDebtor" class="btn btn-primary btn-lg btn-custom">Add Client</a>
+                    </div>
+                </div>
+                <div class="t_actions">
+                    <div class="t_actions-cell">
+                        <input type="text" class="form-control" placeholder="company name, ID">
+                    </div>
+                    <div class="t_actions-cell">
+                        <div class="form-row">
+                            <div class="col-auto">
+                                <select name="" id="" class="custom-select">
+                                    <option value="">Filter by department</option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <input type="text" class="form-control" placeholder="Date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5">
+                    <div class="row gutters-10 justify-content-center">
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="assets/images/a/2.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Bettie Castro
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Male</span>
+                                                <span>24</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">XY2654</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">213 5236152</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="assets/images/a/1.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Merina Mily
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Female</span>
+                                                <span>22</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">BC2156</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">213 698574</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="assets/images/a/3.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Steven Morris
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Male</span>
+                                                <span>36</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">BC21698</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">213 52361012</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="{% static "assets/images/a/4.jpg" %}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Nathan Libby
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Male</span>
+                                                <span>44</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">BC2132</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">213 5236172</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="{% static "assets/images/a/5.jpg" %}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Matthew Roe
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Male</span>
+                                                <span>37</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">BC21974</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">213 52361300</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="assets/images/a/6.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Jeffrey Triplett
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Male</span>
+                                                <span>46</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">BC2100</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">213 5236321</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="assets/images/a/7.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Anthony Thomason
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Male</span>
+                                                <span>56</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">BC2215</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">213 5236548</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="assets/images/a/8.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Jonathan McIntosh
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Male</span>
+                                                <span>50</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">BC2154</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">213 5236152</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="assets/images/a/9.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Irwin Brooks
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Male</span>
+                                                <span>38</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">BC2154</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">522 5236153</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                            <div class="card card_user">
+                                <div class="card-body">
+                                    <div class="card_user-info">
+                                        <div class="card_user-image-block">
+                                            <div class="card_user-image">
+                                                <img src="assets/images/a/10.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card_user-denote">
+                                            <h5 class="card_user-name">
+                                                Danny Duarte
+                                            </h5>
+                                            <div class="card_user-age-sex">
+                                                <span>Male</span>
+                                                <span>50</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="card_user-meta">                                        
+                                        <li>
+                                            <span class="meta_label">Personal ID</span>
+                                            <span class="meta_name">DE2164</span>
+                                        </li>
+                                        <li>
+                                            <span class="meta_label">Phone</span>
+                                            <span class="meta_name">213 5236152</span>
+                                        </li>
+                                    </ul>
+                                    <div class="card_user-action">
+                                        <a href="" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#client_detail_Modal">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            
+        </div>
+    </footer>
+
+
+    <div class="modal fade modal-u_details" id="addNewDebtor" tabindex="-1" role="dialog" aria-labelledby="addNewDebtorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uDetailModalLabel">Add new Client</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <nav class="mb-3">
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="n_personal-tab" data-toggle="tab" href="#n_personal" role="tab" aria-controls="n_personal" aria-selected="true">Personal</a>
+                                <a class="nav-item nav-link" id="n_business-tab" data-toggle="tab" href="#n_business" role="tab" aria-controls="n_business" aria-selected="false">Business</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="n_personal" role="tabpanel" aria-labelledby="n_personal-tab">
+                                <div>
+                                    <div class="row gutters-10">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Name</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Personal ID</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Phone</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Email</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Address</label>
+                                                <div>
+                                                    <textarea name="" rows="3" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="n_business" role="tabpanel" aria-labelledby="n_business-tab">
+                                <div>
+                                    <div class="row gutters-10">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Company Name</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Company ID</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Contact Person</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h6 class="c_form-divider"><span>Contact Person Details</span></h6>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Phone</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Email</label>
+                                                <input type="email" class="form-control">
+                                            </div>
+                                        </div>                                        
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Address</label>
+                                                <div>
+                                                    <textarea name="" rows="3" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-primary btn-custom px-5">Add Client</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade modal-u_details" id="client_detail_Modal" tabindex="-1" role="dialog" aria-labelledby="client_detail_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="client_detail_ModalLabel">Client Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="u_field-group">
+                                <label class="u_field-label">Name</label>
+                                <div class="u_field-text">Bettie Castro</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="u_field-group">
+                                <label class="u_field-label">Personal ID</label>
+                                <div class="u_field-text">XY2654</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="u_field-group">
+                                <label class="u_field-label">Phone</label>
+                                <div class="u_field-text">012 365455</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="u_field-group">
+                                <label class="u_field-label">Email</label>
+                                <div class="u_field-text">bettie_castro@mail.com</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="u_field-group">
+                                <label class="u_field-label">Address</label>
+                                <div class="u_field-text">4791 Argonne Street New Castle, DE 19720</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static "assets/plugins/jquery/jquery-3.2.1.js" %}"></script>
+    <script src="{% static "assets/plugins/popper/popper.js" %}"></script>
+    <script src="{% static "assets/plugins/bootstrap/js/bootstrap.js" %}"></script>
+    <script src="{% static "assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js" %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="{% static "assets/js/script.js" %}"></script>
+</body>
+
+</html>

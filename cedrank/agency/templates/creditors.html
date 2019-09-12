@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" 
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css" %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "assets/plugins/bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+    <title>CREDRANK</title>
+</head>
+
+<body>
+    <aside id="sidebar" style="background-image: url({% static "assets/images/sidebar.png" %})">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-brand">
+                <img src="{% static "assets/images/logo.png" %}" alt="Creditors">
+            </a>
+        </div>
+        <div class="sidebar-body">
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="#" class="s-nav-item"><i class="fas fa-home"></i> <span class="nav-item-text">Home</span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'creditors' %}" class="s-nav-item"><i class="far fa-file-alt"></i> <span class="nav-item-text">Clients</span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'debtors' %}" class="s-nav-item active"><i class="far fa-user"></i> <span class="nav-item-text">Debtors</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="s-nav-item"><i class="fas fa-user-tie"></i> <span class="nav-item-text">Disputes</span></a>
+                    </li>
+                    <li>
+                        <a href="" class="s-nav-item"><i class="fas fa-tools"></i> <span class="nav-item-text">Payments</span></a>
+                    </li>
+                </ul>
+        </div>
+    </aside>
+        <main id="main-content">
+            <div class="main-content-header">
+               <div class="container-fluid">
+                   <div class="main-content-header-block">
+                        <ul class="content-nav ml-auto">
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-bell"></i>
+                                </a>
+                            </li>
+                        </ul>
+                   </div>
+               </div> 
+            </div>
+            <div class="main-content-body">
+                <div class="container-fluid container-fluid-fixed">
+                    <div class="content-header">
+                        <div class="header-cell">
+                            <h1 class="c_header-title">Creditors</h1>
+                            <span class="c_header-subtext">All the Creditors are listed here</span>
+                        </div>
+                        <div class="header-cell header-actions">
+                            <a href="#" role="button" data-toggle="modal" data-target="#addNewcreditor" class="btn btn-primary btn-lg btn-custom">Add Client</a>
+                        </div>
+                    </div>
+                    <div class="t_actions">
+                        <div class="t_actions-cell">
+                            <input type="text" name="search" class="form-control" placeholder="Search ID, name here">
+                        </div>
+                        <div class="t_actions-cell">
+                            <div class="form-row">
+                                <div class="col-auto">
+                                    <select name="" id="" class="custom-select">
+                                        <option value="">Filter by department</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="text" class="form-control" placeholder="Date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <div class="row gutters-10 justify-content-center">
+                            {% for creditor in creditors %}
+                            <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                                <div class="card card_user">
+                                    <div class="card-body">
+                                        <div class="card_user-info">
+                                            <div class="card_user-image-block">
+                                                <div class="card_user-image">
+                                                    <img src="/{{ creditor.photo.url }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="card_user-denote">
+                                                <h5 class="card_user-name">
+                                                    {{ creditor.name }}
+                                                </h5>
+                                                <div class="card_user-age-sex">
+                                                    <span>{{ creditor.gender }}</span>
+                                                    <span>{{ creditor.age }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul class="card_user-meta">                                        
+                                            <li>
+                                                <span class="meta_label">creditor ID</span>
+                                                <span class="meta_name">{{ creditor.individual_id }}</span>
+                                            </li>
+                                            <li>
+                                                <span class="meta_label">Contact no</span>
+                                                <span class="meta_name">{{ creditor.phone }}</span>
+                                            </li>
+                                        </ul>
+                                        <div class="card_user-action">
+                                            <a href="#" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#creditor_detail_Modal{{ creditor.individual_id }}">Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade modal-u_details" id="creditor_detail_Modal{{ creditor.individual_id }}" tabindex="-1" role="dialog" aria-labelledby="creditor_detail_ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="creditor_detail_ModalLabel">Creditor Details</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="u_field-group">
+                                                        <label class="u_field-label">Name</label>
+                                                        <div class="u_field-text">{{ creditor.name }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="u_field-group">
+                                                        <label class="u_field-label">Personal ID</label>
+                                                        <div class="u_field-text">{{ creditor.individual_id }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                        <div class="u_field-group">
+                                                            <label class="u_field-label">Gender</label>
+                                                            <div class="u_field-text">{{ creditor.gender }}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="u_field-group">
+                                                            <label class="u_field-label">Age</label>
+                                                            <div class="u_field-text">{{ creditor.age }}</div>
+                                                        </div>
+                                                    </div>
+                                                <div class="col-md-6">
+                                                    <div class="u_field-group">
+                                                        <label class="u_field-label">Phone</label>
+                                                        <div class="u_field-text">{{ creditor.phone }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="u_field-group">
+                                                        <label class="u_field-label">Email</label>
+                                                        <div class="u_field-text">{{ creditor.email }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="u_field-group">
+                                                        <label class="u_field-label">Address</label>
+                                                        <div class="u_field-text">{{ creditor.Address }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <footer class="footer">
+            <div class="container">
+                
+            </div>
+        </footer>
+    
+    
+        <div class="modal fade modal-u_details modal-bg_light_gray" id="addNewcreditor" tabindex="-1" role="dialog" aria-labelledby="addNewcreditorLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="uDetailModalLabel">Add new client</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="Creditors_form" action="{% url 'creditors' %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                
+                            <div class="tabs-content-addnew">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active" id="n_personal-tab" data-toggle="tab" href="#n_personal" role="tab" aria-controls="n_personal" aria-selected="true">For individual</a>
+                                        <a class="nav-item nav-link" id="n_business-tab" data-toggle="tab" href="#n_business" role="tab" aria-controls="n_business" aria-selected="false">For company</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="n_personal" role="tabpanel" aria-labelledby="n_personal-tab">
+                                        <div>
+                                            <div class="row gutters-16">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Name</label>
+                                                        <input type="text" name="name" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">ID</label>
+                                                        <input type="text" name="individual_id" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-check">
+                                                        <label for="">Gender</label><br>
+                                                        <div class="form-check-inline">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" name="gender" value="Male" required>Male
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check-inline">
+                                                            <label class="form-check-label">
+                                                            <input type="radio" class="form-check-input" name="gender" value="Female">Female
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Age</label>
+                                                        <input type="text" name="age" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <!-- <h6 class="c_form-divider"><span>Contact Details</span></h6> -->
+                                                    <h6 class="c_form-divider-extend">
+                                                        <div class="form-divider-extend-content">
+                                                            <span>Contact Details</span>
+                                                        </div>
+                                                    </h6>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Phone</label>
+                                                        <input type="text" name="phone" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Email</label>
+                                                        <input type="text" name="email" class="form-control" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="">Address</label>
+                                                        <div>
+                                                            <textarea name="Address" rows="2" class="form-control" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h6 class="c_form-divider-extend"></h6>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="custom-file-label" for="customFile_2">Photo</label>
+                                                        <input type="file" name="photo" class="form-control">
+                                                    </div>
+                                                </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="n_business" role="tabpanel" aria-labelledby="n_business-tab">
+                                        <div>
+                                            <div class="row gutters-10">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="">Company Name</label>
+                                                                <input type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Company ID</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Contact Person</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h6 class="c_form-divider-extend">
+                                                        <div class="form-divider-extend-content">
+                                                            <span>Contact Person Details</span>
+                                                        </div>
+                                                    </h6>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Phone</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Email</label>
+                                                        <input type="email" class="form-control">
+                                                    </div>
+                                                </div>                                        
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="">Address</label>
+                                                        <div>
+                                                            <textarea name="" rows="3" class="form-control"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <h6 class="c_form-divider-extend"></h6>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="">Debt amount</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="">Case Notes</label>
+                                                        <textarea name="" rows="2" class="form-control" placeholder="Pls fill in case details"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group mb-0">
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="customFile_2">
+                                                            <label class="custom-file-label" for="customFile_2">Additional documents attachment (link, pdf, doc file)</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-right pt-3">
+                                <button class="btn btn-primary btn-custom px-5">Add client</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--
+        <div class="modal fade modal-u_details" id="creditor_detail_Modal{{ creditor.individual_id }}" tabindex="-1" role="dialog" aria-labelledby="creditor_detail_ModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="creditor_detail_ModalLabel">Creditor Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="u_field-group">
+                                        <label class="u_field-label">Name</label>
+                                        <div class="u_field-text">{{ creditor.name }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="u_field-group">
+                                        <label class="u_field-label">Personal ID</label>
+                                        <div class="u_field-text">XY2654</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="u_field-group">
+                                        <label class="u_field-label">Phone</label>
+                                        <div class="u_field-text">012 365455</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="u_field-group">
+                                        <label class="u_field-label">Email</label>
+                                        <div class="u_field-text">bettie_castro@mail.com</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="u_field-group">
+                                        <label class="u_field-label">Address</label>
+                                        <div class="u_field-text">4791 Argonne Street New Castle, DE 19720</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        -->    
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static "assets/plugins/jquery/jquery-3.2.1.js" %}"></script>
+    <script src="{% static "assets/plugins/popper/popper.js" %}"></script>
+    <script src="{% static "assets/plugins/bootstrap/js/bootstrap.js" %}"></script>
+    <script src="{% static "assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js" %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="{% static "assets/js/script.js" %}"></script>
+</body>
+
+</html>

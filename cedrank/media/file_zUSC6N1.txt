@@ -1,0 +1,15 @@
+           Vessel            cbm    mts     Cargo       Load         Disch     Laycan            Rate           Charterer
+           Commander        84,000 44,000    LPG      Freeport        East    19-20 Nov $77.5/pmt H-C via Pan      Shell
+           Challenger       84,000 44,000    LPG       Bonny          Opts    16-18 Nov     high $60's B-C        Lukoil
+           Iris Glory       84,000 44,000    LPG       Yanbu          India     09-Nov        $1.57m LS           BPCL
+           Oriental Jubilee 84,000 44,000    LPG         AG           East    15-16 Nov     $42/pmt RT-C      Yantai Wanhau
+           BW Malacca       84,000 44,000    LPG      Ferndale        East    28-30 Nov    mid $40's RT-C        Petrogas
+           Jag Vasant       83,000 44,000    LPG       Yanbu          East      25-Nov       $43/pmt Y-C          Vilma
+           Crystal Sunrise 82,000  44,000    LPG         RT           East      17-Nov      $38/pmt RT-C          Vilma
+           G.Paragon        82,000 44,000    LPG         RT           East    24-25 Nov     $39/pmt RT-C         Equinor
+           Grace River      79,400 44,000    LPG         RT           East    19-20 Nov     $41/pmt RT-C            BP
+           Yuyo Spirit      78,000 44,000    LPG      Houston         East    11-12 Nov $77/pmt H-C via Pan      Equinor
+           Takao Gas        75,000 44,000    LPG        MAA           India   25-26 Nov      $1.335m LS            IOC
+           B Gas Mariner     3,500 1,200     But     Fredericia       Opts    30-02 Nov          RNR               Shell
+           Coral Lophelia    5,600 2,500     Pro  Flushing+Huelva   Canaries  26-28 Oct          RNR              Cepsa
+           Sigas Silvia      5,000 2,000     But   Grangemouth        Opts     1-3 Nov           RNR            PetroIneos

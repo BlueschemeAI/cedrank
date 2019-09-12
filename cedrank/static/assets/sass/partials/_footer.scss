@@ -1,0 +1,85 @@
+.footer {
+	.foobar {
+		padding-top: $common-space *2;
+		padding-bottom: ($common-space *2) - 8px;
+		position: relative;
+		&:before {
+			content: " ";
+			display: block;
+			width: 100%;
+			max-width: 60%;
+			height: 1px;
+			background-color: $border-color;
+			position: absolute;
+			left: 50%;
+			top: 0;
+			transform: translateX(-50%);
+		}
+	}
+	.foo-brand {
+		margin-bottom: 1rem;
+		img {
+			max-width: 50px;
+			height: auto;
+		}
+	}
+
+	.contact-label {
+		font-size: ($fs-base * .875);
+		text-transform: uppercase;
+		letter-spacing: .063rem;
+		opacity: .65;
+		margin-bottom: .75rem;
+	}
+	.contact-email {
+		font-size: ($fs-base * 2.5);
+	}
+}
+
+.foo-nav-inline {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	@include list-unstyled;
+	margin: 0 -8px 1rem;
+	font-size: $fs-small; 
+
+	li {
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+	a {
+		text-transform: uppercase;
+		letter-spacing: .063rem;
+		font-weight: 500;
+		color: $color-text;
+	}
+}
+
+.copyright {
+	margin-top: 5px;
+	display: inline-block;
+	font-size: 90%;
+	font-style: italic;
+	opacity: .85;
+}
+
+.foo-socials {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	@include list-unstyled;
+	margin: 0 -15px 1rem;
+	font-size: ($fs-base * 1.5);
+	li {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	a {
+		display: inline-block;
+		transition: .25s ease;
+		&:hover {
+			
+		}
+	}
+}
