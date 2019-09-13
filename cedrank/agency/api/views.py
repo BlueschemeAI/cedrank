@@ -1,5 +1,5 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
-from .serializers import DebtorsSerializer
+from .serializers import DebtorsSerializer, CreditorsIdSerializer
 from agency.models import Debtors, Creditors
 
 class DebtorsListView(ListAPIView):
@@ -9,6 +9,10 @@ class DebtorsListView(ListAPIView):
 class DebtorsDetailView(RetrieveAPIView):
     queryset=Debtors.objects.all()
     serializer_class=DebtorsSerializer
+
+class CreditorsIdListView(ListAPIView):
+    queryset=Creditors.objects.all()
+    serializer_class=CreditorsIdSerializer
 
 
 

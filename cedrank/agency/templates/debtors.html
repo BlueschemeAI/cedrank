@@ -73,8 +73,25 @@
                     </div>
                     <div class="t_actions">
                         <div class="t_actions-cell">
-                            <input type="text" name="search" class="form-control" placeholder="Search ID, name here">
+                            <div class="form-row">
+                                <div class="col-auto">
+                                    <input type="text" name="search" class="form-control" placeholder="Search ID, name here">
+                                </div>
+                                <div class="col-auto">
+                                    <form action="{% url 'filteredDebtors' %}" method="POST">
+                                        {% csrf_token %}
+                                        <select name="clientid" id="" class="custom-select">
+                                            <option value="" disabled selected>Filter by clientID</option>
+                                            {% for cid in clientid %}
+                                                <option value="{{ cid.clientid }}">{{ cid.clientid }}</option>
+                                            {% endfor %}                                                                                                                           
+                                        </select>
+                                        <button class="btn btn-primary btn-custom px-1">Filter</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
+                                           
                         <div class="t_actions-cell">
                             <div class="form-row">
                                 <div class="col-auto">
@@ -392,7 +409,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text-right pt-3">
-                                                        <button class="btn btn-primary btn-custom px-5">Add Debtor</button>
+                                                        <button class="btn btn-primary btn-custom px-5">Edit Debtor</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -449,6 +466,13 @@
                                                         <input type="text" name="individual_id" class="form-control" required>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="">Client Id</label>
+                                                            <input type="text" name="clientid" class="form-control" required>
+                                                        </div>
+                                                </div>
+                                                 
                                                 <div class="col-md-6">
                                                     <div class="form-check">
                                                         <label for="">Gender</label><br>

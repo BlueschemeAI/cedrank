@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     'corsheaders',
+    #'django_filters',
     'agency.apps.AgencyConfig',
     'django.contrib.admin',
     'django.contrib.auth',

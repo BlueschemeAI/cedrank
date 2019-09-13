@@ -1,18 +1,17 @@
 from django.shortcuts import render, redirect
-from agency.forms import DebtorsAddForm, CreditorsAddForm
+from agency.forms import DebtorsAddForm, CreditorsAddForm, CidFilterDebtorsForm
 from agency.models import Debtors, Creditors
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
-
+from django.forms.models import inlineformset_factory
 
 def debtors(request):
-    debtors_form = DebtorsAddForm()
     if request.method == 'POST':
         debtors_form = DebtorsAddForm(request.POST, request.FILES)
         if debtors_form.is_valid():
+            print('save')
             debtors = debtors_form.save(commit=False)
-            #debtors.document = request.FILES['document']
             debtors.save()
             subject = 'Debtors added'
             message = ' Hi \n You have been added as debtor'
@@ -20,14 +19,16 @@ def debtors(request):
             recipient_list = [debtors.email]
             send_mail(subject, message, email_from, recipient_list)
             #messages.error(request, f'Your account has been created. Please login.')
-            return render(request,'debtors.html', { 'debtors':Debtors.objects.all() })
+            return render(request,'debtors.html', { 'debtors':Debtors.objects.all(), 'clientid':Creditors.objects.values('clientid') })
         else:
             messages.error(request, f'Can not able to add debtors')
             return redirect('debtors')
     else:
+        #print('not valid')
         debtors_form = DebtorsAddForm()
-    return render(request,'debtors.html', { 'debtors':Debtors.objects.all() })
+    return render(request,'debtors.html', { 'debtors':Debtors.objects.all(), 'clientid':Creditors.objects.values('clientid') })
 
+    
 def updateDebtors(request, id):  
     updateDebtor = Debtors.objects.get(id=id)  
     form = DebtorsAddForm(request.POST, instance=updateDebtor)  
@@ -35,6 +36,13 @@ def updateDebtors(request, id):
         form.save()
         return redirect("debtors")  
     return render(request,'debtors.html', { 'debtors':Debtors.objects.all() })  
+
+def filteredDebtors(request):
+    if request.method == 'POST':
+        clientid = request.POST.get('clientid')
+        filterDebtor = Debtors.objects.filter(clientid=clientid).values()
+        #return redirect("debtors")
+        return render(request,'debtors.html', { 'debtors':filterDebtor, 'clientid':Creditors.objects.values('clientid') })  
 
 
 def creditors(request):

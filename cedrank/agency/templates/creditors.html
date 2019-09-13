@@ -93,101 +93,211 @@
                     <div class="mt-5">
                         <div class="row gutters-10 justify-content-center">
                             {% for creditor in creditors %}
-                            <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
-                                <div class="card card_user">
-                                    <div class="card-body">
-                                        <div class="card_user-info">
-                                            <div class="card_user-image-block">
-                                                <div class="card_user-image">
-                                                    <img src="/{{ creditor.photo.url }}" alt="">
+                                <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-3 col-card_user">
+                                    <div class="card card_user">
+                                        <div class="card-body">
+                                            <div class="card_user-info">
+                                                <div class="card_user-image-block">
+                                                    <div class="card_user-image">
+                                                        <img src="/{{ creditor.photo.url }}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="card_user-denote">
+                                                    <h5 class="card_user-name">
+                                                        {{ creditor.name }}
+                                                    </h5>
+                                                    <div class="card_user-age-sex">
+                                                        <span>{{ creditor.gender }}</span>
+                                                        <span>{{ creditor.age }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="card_user-denote">
-                                                <h5 class="card_user-name">
-                                                    {{ creditor.name }}
-                                                </h5>
-                                                <div class="card_user-age-sex">
-                                                    <span>{{ creditor.gender }}</span>
-                                                    <span>{{ creditor.age }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <ul class="card_user-meta">                                        
-                                            <li>
-                                                <span class="meta_label">creditor ID</span>
-                                                <span class="meta_name">{{ creditor.individual_id }}</span>
-                                            </li>
-                                            <li>
-                                                <span class="meta_label">Contact no</span>
-                                                <span class="meta_name">{{ creditor.phone }}</span>
-                                            </li>
-                                        </ul>
-                                        <div class="card_user-action">
-                                            <a href="#" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#creditor_detail_Modal{{ creditor.individual_id }}">Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal fade modal-u_details" id="creditor_detail_Modal{{ creditor.individual_id }}" tabindex="-1" role="dialog" aria-labelledby="creditor_detail_ModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="creditor_detail_ModalLabel">Creditor Details</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="u_field-group">
-                                                        <label class="u_field-label">Name</label>
-                                                        <div class="u_field-text">{{ creditor.name }}</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="u_field-group">
-                                                        <label class="u_field-label">Personal ID</label>
-                                                        <div class="u_field-text">{{ creditor.individual_id }}</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                        <div class="u_field-group">
-                                                            <label class="u_field-label">Gender</label>
-                                                            <div class="u_field-text">{{ creditor.gender }}</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="u_field-group">
-                                                            <label class="u_field-label">Age</label>
-                                                            <div class="u_field-text">{{ creditor.age }}</div>
-                                                        </div>
-                                                    </div>
-                                                <div class="col-md-6">
-                                                    <div class="u_field-group">
-                                                        <label class="u_field-label">Phone</label>
-                                                        <div class="u_field-text">{{ creditor.phone }}</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="u_field-group">
-                                                        <label class="u_field-label">Email</label>
-                                                        <div class="u_field-text">{{ creditor.email }}</div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="u_field-group">
-                                                        <label class="u_field-label">Address</label>
-                                                        <div class="u_field-text">{{ creditor.Address }}</div>
-                                                    </div>
-                                                </div>
+                                            <ul class="card_user-meta">                                        
+                                                <li>
+                                                    <span class="meta_label">creditor ID</span>
+                                                    <span class="meta_name">{{ creditor.clientid }}</span>
+                                                </li>
+                                                <li>
+                                                    <span class="meta_label">Contact no</span>
+                                                    <span class="meta_name">{{ creditor.phone }}</span>
+                                                </li>
+                                            </ul>
+                                            <div class="card_user-action">
+                                                <a href="#" class="btn btn-custom btn-block btn-detail" data-toggle="modal" data-target="#creditor_detail_Modal{{ creditor.individual_id }}">Details</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="modal fade modal-u_details" id="creditor_detail_Modal{{ creditor.individual_id }}" tabindex="-1" role="dialog" aria-labelledby="creditor_detail_ModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="uDetailModalLabel">Client details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="tabs-content-addnew">
+                                                    <nav>
+                                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                        <a class="nav-item nav-link active" id="n_personal-tab" data-toggle="tab" href="#n_personal" role="tab" aria-controls="n_personal" aria-selected="true">For individual</a>
+                                                        <a class="nav-item nav-link" id="n_business-tab" data-toggle="tab" href="#n_business" role="tab" aria-controls="n_business" aria-selected="false">For company</a>
+                                                    </div>
+                                                    </nav>
+                                                    <div class="tab-content" id="nav-tabContent">
+                                                        <div class="tab-pane fade show active" id="n_personal" role="tabpanel" aria-labelledby="n_personal-tab">
+                                                            <div>
+                                                                <div class="row gutters-16">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Name</label>
+                                                                            <div class="u_field-text">{{ creditor.name }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label for="">ID</label>
+                                                                            <div class="u_field-text">{{ creditor.clientid }}</div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Gender</label>
+                                                                            <div class="u_field-text">{{ creditor.gender }}</div>
+                                                                        </div>
+                                                                    </div>                
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Age</label>
+                                                                            <div class="u_field-text">{{ creditor.age }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                            <!-- <h6 class="c_form-divider"><span>Contact Details</span></h6> -->
+                                                                        <h6 class="c_form-divider-extend">
+                                                                            <div class="form-divider-extend-content">
+                                                                                <span>Contact Details</span>
+                                                                            </div>
+                                                                        </h6>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Phone</label>
+                                                                            <div class="u_field-text">{{ creditor.phone }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label for="">Email</label>
+                                                                            <div class="u_field-text">{{ creditor.email }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="">Address</label>
+                                                                                <div class="u_field-text">{{ creditor.Address }}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="col-md-12">
+                                                                            <h6 class="c_form-divider-extend"></h6>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label class="custom-file-label" for="customFile_2">Photo</label>
+                                                                            <div class="card_user-image">
+                                                                                <img src="/{{ creditor.photo.url }}" alt="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="n_business" role="tabpanel" aria-labelledby="n_business-tab">
+                                                                <div>
+                                                                    <div class="row gutters-10">
+                                                                        <div class="col-md-12">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="">Company Name</label>
+                                                                                        <input type="text" class="form-control">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Company ID</label>
+                                                                                <input type="text" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Contact Person</label>
+                                                                                <input type="text" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <h6 class="c_form-divider-extend">
+                                                                                <div class="form-divider-extend-content">
+                                                                                    <span>Contact Person Details</span>
+                                                                                </div>
+                                                                            </h6>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Phone</label>
+                                                                                <input type="text" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">Email</label>
+                                                                                <input type="email" class="form-control">
+                                                                            </div>
+                                                                        </div>                                        
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label for="">Address</label>
+                                                                                <div>
+                                                                                    <textarea name="" rows="3" class="form-control"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <h6 class="c_form-divider-extend"></h6>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label for="">Debt amount</label>
+                                                                                <input type="text" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label for="">Case Notes</label>
+                                                                                <textarea name="" rows="2" class="form-control" placeholder="Pls fill in case details"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group mb-0">
+                                                                                <div class="custom-file">
+                                                                                    <input type="file" class="custom-file-input" id="customFile_2">
+                                                                                    <label class="custom-file-label" for="customFile_2">Additional documents attachment (link, pdf, doc file)</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                            </div>
+                                                    </div>
+                                    </div>
+                                </div>
                             {% endfor %}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -233,7 +343,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">ID</label>
-                                                        <input type="text" name="individual_id" class="form-control" required>
+                                                        <input type="text" name="clientid" class="form-control" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
