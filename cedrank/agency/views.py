@@ -12,29 +12,25 @@ def debtors(request):
         debtors_form = DebtorsAddForm(request.POST, request.FILES)
         if debtors_form.is_valid():
             debtors = debtors_form.save(commit=False)
-            #debtors.document = request.FILES['document']
             debtors.save()
-            subject = 'Debtors added'
-            message = ' Hi \n You have been added as debtor'
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [debtors.email]
-            send_mail(subject, message, email_from, recipient_list)
-            #messages.error(request, f'Your account has been created. Please login.')
-            return render(request,'debtors.html', { 'debtors':Debtors.objects.all() })
+            debtors_form = DebtorsAddForm()
+            return redirect('debtors')
         else:
             messages.error(request, f'Can not able to add debtors')
             return redirect('debtors')
-    else:
-        debtors_form = DebtorsAddForm()
-    return render(request,'debtors.html', { 'debtors':Debtors.objects.all() })
 
-def updateDebtors(request, id):  
-    updateDebtor = Debtors.objects.get(id=id)  
-    form = DebtorsAddForm(request.POST, instance=updateDebtor)  
-    if form.is_valid():  
+    debtors_form = DebtorsAddForm()
+    return render(request,'debtors.html', { 'debtors': Debtors.objects.all(), 'creditors': Creditors.objects.all() })
+
+
+def updateDebtors(request, id):
+    updateDebtor = Debtors.objects.get(id=id)
+    form = DebtorsAddForm(request.POST, instance=updateDebtor)
+    if form.is_valid():
         form.save()
-        return redirect("debtors")  
-    return render(request,'debtors.html', { 'debtors':Debtors.objects.all() })  
+        form = DebtorsAddForm()
+        return redirect("debtors")
+    return render(request, 'debtors.html', { 'debtors': Debtors.objects.all() })
 
 
 def creditors(request):
