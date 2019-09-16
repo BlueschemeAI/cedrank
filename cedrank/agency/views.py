@@ -6,6 +6,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.forms.models import inlineformset_factory
 
+from .internal_requests import send_sms_to
+
 def debtors(request):
     if request.method == 'POST':
         debtors_form = DebtorsAddForm(request.POST, request.FILES)
@@ -17,6 +19,8 @@ def debtors(request):
             message = ' Hi \n You have been added as debtor'
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [debtors.email]
+            if debtors.phone:
+                send_sms_to(debtors.phone, message)
             send_mail(subject, message, email_from, recipient_list)
             #messages.error(request, f'Your account has been created. Please login.')
             return render(request,'debtors.html', { 'debtors':Debtors.objects.all(), 'clientid':Creditors.objects.values('clientid') })
