@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'rest_framework',
     'corsheaders',
-    #'django_filters',
     'agency.apps.AgencyConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -158,4 +157,4 @@ EMAIL_HOST_PASSWORD='Testmail@987'
 account_sid = 'Account sid'
 auth_token = 'auth-token'
 client = Client(account_sid, auth_token)
-from_number = ''
+from_number = '+18507717298'
