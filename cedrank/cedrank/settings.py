@@ -157,5 +157,5 @@ EMAIL_HOST_PASSWORD='Testmail@987'
 # SMS config
 account_sid = 'Account sid'
 auth_token = 'auth-token'
-client = Client(account_sid, auth_token)
 from_number = ''
+client = Client(account_sid, auth_token)

@@ -1,4 +1,4 @@
-from cedrank.cedrank.settings import client, from_number
+from cedrank.settings import client, from_number
 
 
 def send_sms_to(worker_phone, message_body):
