@@ -15,6 +15,8 @@ def debtors(request):
             print('save')
             debtors = debtors_form.save(commit=False)
             debtors.save()
+            debtors_form = DebtorsAddForm()
+            message = ' Hi \n You have been added as debtor'
             subject = 'Debtors added'
             message = ' Hi \n You have been added as debtor'
             email_from = settings.EMAIL_HOST_USER
@@ -23,14 +25,13 @@ def debtors(request):
                 send_sms_to(debtors.phone, message)
             send_mail(subject, message, email_from, recipient_list)
             #messages.error(request, f'Your account has been created. Please login.')
-            return render(request,'debtors.html', { 'debtors':Debtors.objects.all(), 'clientid':Creditors.objects.values('clientid') })
+            return redirect('debtors')
         else:
             messages.error(request, f'Can not able to add debtors')
             return redirect('debtors')
-    else:
-        #print('not valid')
-        debtors_form = DebtorsAddForm()
-    return render(request,'debtors.html', { 'debtors':Debtors.objects.all(), 'clientid':Creditors.objects.values('clientid') })
+
+    debtors_form = DebtorsAddForm()
+    return render(request,'debtors.html', { 'debtors': Debtors.objects.all(), 'clientid': Creditors.objects.values('clientid'), 'creditors': Creditors.objects.all()})
 
     
 def updateDebtors(request, id):  
